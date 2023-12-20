@@ -1,0 +1,37 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Event</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to events_path, class: button_class(theme: "transparent") do %>
+      All Events
+      <% end %>
+      <%= link_to edit_event_path(@event), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Starts at:</p>
+        <p><%= @event.starts_at %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Ends at:</p>
+        <p><%= @event.ends_at %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Title:</p>
+        <p><%= @event.title %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Description:</p>
+        <p><%= @event.description %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Address:</p>
+        <p><%= @event.address %></p>
+      </li>
+  </ul>
+</div>

@@ -1,0 +1,9 @@
+.max-w-3xl.mx-auto.px-4
+  .flex.items-center.justify-between
+    h1.font-bold.text-3xl.mb-6
+      | Créer un évènement
+
+    - if current_user.booking_link?
+      = link_to "View events page", user_path(booking_link: current_user.booking_link), class: "text-gray-700 underline"
+    
+  = render 'form', booking_type: @booking_type
