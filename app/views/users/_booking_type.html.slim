@@ -1,18 +1,18 @@
-#= dom_id booking_type
-  = link_to new_user_booking_path(booking_link: @user.booking_link, booking_type: booking_type.name.parameterize), class: "p-6 border shadow-xl rounded-xl block hover:shadow-lg transition ease-in duration-300 relative overflow-hidden" do
-  .h-1.w-full.absolute.top-0.left-0.right-0[style="background-color: #{booking_type.color}"]
-  h3.font-medium.text-2xl
-  = booking_type.name
-  p.text-gray-500
-  | View booking page
-  p
-  = duration(booking_type)
-  - if booking_type.payment_required? 
-    .mt-3.pt-3.border-t
-      p
-        strong
-          | Payment required
-      p
-        strong
-          | Price:
+div id=dom_id(booking_type)
+  = link_to new_user_booking_path(booking_link: @user.booking_link, booking_type: booking_type.name), class: "p-6 border shadow-xl rounded-xl block hover:shadow-lg transition ease-in duration-300 relative overflow-hidden" do
+    .h-1.w-full.absolute.top-0.left-0.right-0 style="background-color: #{booking_type.color}"
+    h3.font-medium.text-2xl
+    = booking_type.name
+    p.text-gray-500
+      | View booking page
+    p
+      = duration(booking_type)
+    - if booking_type.payment_required? 
+      .mt-3.pt-3.border-t
+        p
+          strong
+            | Payment required
+        p
+          strong
+            | Price:
           = number_to_currency(booking_type.price) 

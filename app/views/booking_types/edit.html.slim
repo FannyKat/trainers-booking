@@ -1,0 +1,7 @@
+.max-w-3xl.mx-auto.px-4
+  .flex.items-center.justify-between.mb-6.flex-wrap
+    h1.font-bold.text-3xl.mb-6
+      | Edit booking_type
+    - if @booking_type.persisted? 
+      = button_to 'Destroy', @booking_type, method: :delete, class: "text-red-700 underline", data: { turbo_confirm: 'Are you sure?' }  
+    = render 'form', booking_type: @booking_type

@@ -5,75 +5,75 @@
     = link_to "Create booking type", new_booking_type_path, class: button_class(theme: "primary")
   .py-10.grid.grid-cols-3.gap-6
     = render @booking_types
+
   - if @bookings.pending.any?
     h3.font-bold.text-2xl.mb-6.mt-10.pt-10.border-t.border-slate-2
       | Pending bookings
     table.w-full.table-collapse
       thead
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Status
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Name
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Email
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Starts
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Ends
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Booking Type
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Premium
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Paid
+      tbody
+        = render @bookings.pending
 
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Status
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Name
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Email
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Starts
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Ends
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Booking Type
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Premium
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Paid
-    tbody
-      = render @bookings.pending
   - if @bookings.approved.any?
     h3.font-bold.text-2xl.mb-6.mt-10.pt-10.border-t.border-slate-2
       | Pending bookings
     table.w-full.table-collapse
       thead
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Status
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Name
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Email
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Starts
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Ends
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Booking Type
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Premium
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Paid
+      tbody
+        = render @bookings.approved
 
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Status
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Name
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Email
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Starts
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Ends
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Booking Type
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Premium
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Paid
-    tbody
-      = render @bookings.approved
   - if @bookings.unapproved.any?
     h3.font-bold.text-2xl.mb-6.mt-10.pt-10.border-t.border-slate-2
       | Unapproved bookings
     table.w-full.table-collapse
       thead
-
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Status
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Name
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Email
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Starts
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Ends
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Booking Type
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Premium
-    th.border.border-slate-300.p-3.text-left.bg-slate-50
-      | Paid
-    tbody
-      = render @bookings.unapproved
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Status
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Name
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Email
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Starts
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Ends
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Booking Type
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Premium
+        th.border.border-slate-300.p-3.text-left.bg-slate-50
+          | Paid
+      tbody
+        = render @bookings.unapproved

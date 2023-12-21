@@ -1,44 +1,49 @@
-= form_with(model: booking, data: { turbo: false) do |form| 
-- if booking.errors.any?
-#error_explanation.bg-red-50.p-6.rounded.text-red-800
-  h2.text-lg.font-semibold.mb-3
-    = pluralize(booking.errors.count, "error") 
-    | prohibited this booking from being saved:
-  ul.list-disc.leading-relaxed
-    - booking.errors.full_messages.each do |message| 
-    li
-      = message
+= form_with(model: booking, data: { turbo: false, action: "submit->payment#purchase", payment_target: "form" }) do |form| 
+  - if booking.errors.any?
+    #error_explanation.bg-red-50.p-6.rounded.text-red-800
+      h2.text-lg.font-semibold.mb-3
+        = pluralize(booking.errors.count, "error") 
+        | prohibited this booking from being saved:
+      ul.list-disc.leading-relaxed
+        - booking.errors.full_messages.each do |message| 
+          li
+            = message
 
-h3.font-bold.text-lg.mb-3.mt-6
-  | Personal details
-.grid.grid-col-1.lg:grid-cols-2.gap-6.mb-10
-  div
-    = form.label :name, class: label_class 
-    = form.text_field :name, class: input_class 
-  div
-    = form.label :email, class: label_class 
-    = form.text_field :email, class: input_class 
-.mb-6
-  = form.label :notes, class: label_class 
-  = form.rich_text_area :notes, class: input_class 
-h3.font-bold.text-lg.mb-3
-  | Booking details
-   - if @booking.new_record? 
-.mb-6
-  .rounded.border-slate-300.border.shadow-sm.bg-white.py-6.px-10.inline-block.relative
-    = form.label :booking_type_id, "Booking type", class: label_class 
-    input[type="hidden" name="booking[booking_type_id]" value="<%= @booking_type.id %>"]
-    .flex.items-start
-      .text-3xl.font-bold.mr-3
-        = params[:booking_type] 
-        .absolute.top-3.right-3.w-3.h-3.rounded-full[style="background-color: <%= @booking_type.color %>;"]
+  h3.font-bold.text-lg.mb-3.mt-6 
+    | Personal details
+  
+  .grid.grid-col-1.lg:grid-cols-2.gap-6.mb-10
+    div
+      = form.label :name, class: label_class 
+      = form.text_field :name, class: input_class
+    div
+      = form.label :email, class: label_class 
+      = form.text_field :email, class: input_class, data: { payment_target: "email" }
+    .mb-6
+      = form.label :notes, class: label_class 
+      = form.rich_text_area :notes, class: input_class
+
+    h3.font-bold.text-lg.mb-3
+      | Booking details
+
+    - if @booking.new_record? 
+      .mb-6
+        .rounded.border-slate-300.border.shadow-sm.bg-white.py-6.px-10.inline-block
+          = form.label :booking_type_id, "Booking type", class: label_class
+          input[type="hidden" name="booking[booking_type_id]" value="#{@booking_type.id}"]
+          .flex.items-start
+            .text-3xl.font-bold.mr-3
+            = params[:booking_type] 
+              .absolute.top-3.right-3.w-3.h-3.rounded-full[style="background-color: #{@booking_type.color}"]
     - else 
-    = @booking.booking_type.name 
-.grid.grid-cols-1.lg:grid-cols-2.gap-6.mb-10
-  div
-    = form.label :start_at, class: label_class 
-    = form.datetime_field :start_at, class: input_class, min: Date.today 
-  div
-    = form.label :end_at, class: label_class 
-    = form.datetime_field :end_at, class: input_class, min: Date.today 
-= form.submit @booking_type.payment_required? ? "Schedule booking for #{number_to_currency(@booking_type.price)}" : "Schedule booking", class: button_class(theme: 'primary')
+      = @booking.booking_type.name
+
+    .grid.grid-cols-2.gap-6.mb-6
+      div
+        = form.label :start_at, class: label_class 
+        = form.datetime_field :start_at, class: input_class, min: Date.today 
+      div
+        = form.label :end_at, class: label_class 
+        = form.datetime_field :end_at, class: input_class, min: Date.today
+
+  = form.submit @booking_type.payment_required? ? "Schedule booking for #{number_to_currency(@booking_type.price)}" : "Schedule booking", class: button_class(theme: 'primary'), data: { payment_target: "submit" }
