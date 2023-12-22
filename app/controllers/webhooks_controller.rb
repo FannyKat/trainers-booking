@@ -8,7 +8,7 @@ class WebhooksController < ApplicationController
     event = nil 
 
     begin
-      event = Stripe::Webhook.contruct_event(
+      event = Stripe::Webhook.construct_event(
         payload, signature_header, endpoint_secret
       )
     rescue JSON::ParserError => e
@@ -23,7 +23,7 @@ class WebhooksController < ApplicationController
       # Find bookings
       @user = User.find(event.data.object.metadata['user_id'])
       @bookings = Booking.where(booking_type_id: @user.booking_type_ids)
-      @booking = @booking.last
+      @booking = @bookings.last
       @booking.update(customer_paid: true, status: "approved")
     when 'payment_intend.processing'
       # Send email to user notifying we are processing their payment and will get another reminder or something when payment completes.
