@@ -1,0 +1,20 @@
+- subtitle ||= ""
+- title ||= ""
+.items-start.justify-center.block.h-full.grid-cols-1.gap-4.lg:grid.lg:items-center.lg:grid-cols-2
+  .relative.flex.items-center.justify-center.h-32.overflow-hidden.lg:h-screen.bg-gradient-to-tr.from-black.to-gray-800
+    .inset-auto.z-30.flex.items-center.justify-center.flex-1.w-full.h-auto.font-sans.text-center.text-white.shadow.lg:flex.lg:h-screen.lg:absolute.xl:text-5xl
+      h1.font-semibold.text-4xl
+        | Book your Dog
+  div
+    .relative.z-20.px-6.mx-auto.lg:px-12.max-w-lg
+      .mb-4.xl:mt-8
+        .mt-6.mb-4.lg:mt-0
+          = link_to "Back", root_path, class: "text-gray-600 underline flex items-center hover:text-gray-700 hover:no-underline"
+        - unless title.blank?
+          h2.pt-6.font-sans.text-3xl.font-black.leading-tight
+            = title
+        - unless subtitle.blank?
+          p.text-gray-600.mt-3
+            = subtitle
+      = yield
+      = render "devise/shared/links"

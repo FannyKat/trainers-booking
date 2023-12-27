@@ -1,0 +1,44 @@
+.items-start.justify-center.block.h-full.grid-cols-1.gap-4.lg:grid.lg:items-center.lg:grid-cols-2
+  .relative.flex.items-center.justify-center.h-32.overflow-hidden.lg:h-screen.bg-gradient-to-tr.from-black.to-gray-800
+    .inset-auto.z-30.flex.items-center.justify-center.flex-1.w-full.h-auto.font-sans.text-center.text-white.shadow.lg:flex.lg:h-screen.lg:absolute.xl:text-5xl
+      h1.font-semibold.text-4xl
+        | Balade "#{@booking_type.name}"
+  div
+    .relative.z-20.px-6.mx-auto.lg:px-12.max-w-lg
+      .mb-4.xl:mt-8
+        .mt-6.mb-4.lg:mt-0
+          - if current_user and current_user.role == 'admin'
+            .flex-wrap.lg:flex.items-center.lg:space-x-3
+              = link_to booking_types_path, class: button_class(theme: "transparent") do
+                |  All Booking_types 
+              = link_to edit_booking_type_path(@booking_type), class: button_class(theme:"primary") do
+                |  Edit 
+          - else 
+            = link_to 'Go Back', :back, class: button_class(theme: "primary") 
+
+      ul.text-slate-700
+        li
+          p.font-semibold
+            | Location:
+          p
+            = @booking_type.location
+        li
+          p.font-semibold
+            | Description:
+          p
+            = @booking_type.description
+        li
+          p.font-semibold
+            | Duration:
+          p
+            = duration(@booking_type)
+        li
+          p.font-semibold
+            | Price:
+          p
+            = price(@booking_type)
+        li
+          p.font-semibold
+            | Organisator:
+          p
+            = @booking_type.user.name.full
