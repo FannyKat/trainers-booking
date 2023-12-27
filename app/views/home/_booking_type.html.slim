@@ -1,0 +1,19 @@
+.border.rounded.p-6.shadow-md.bg-slate-50.hover:opacity-50
+  h1.text-center.text-3xl
+    = booking_type.name
+  .my-5
+    strong 
+      | Lieu: 
+    = booking_type.location 
+  .my-5
+    strong 
+      | Durée: 
+    = duration(booking_type)
+  .my-5
+    strong 
+      | Prix: 
+    = price(booking_type)
+  .my-5
+    strong 
+      | Organisateur: 
+    = find_username(booking_type.user_id)

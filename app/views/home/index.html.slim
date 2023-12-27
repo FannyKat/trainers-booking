@@ -1,16 +1,4 @@
-.max-w-5xl.mx-auto.mt-4.lg:p-12.p-4.grid.grid-cols-1.lg:grid-cols-12.gap-x-12.gap-y-4.relative.z-20
-  .lg:col-span-12.text-center
-    .flex.justify-center.mb-6
-      svg.w-16.h-16[fill="none" height="512" viewbox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"]
-        lineargradient#a[gradientunits="userSpaceOnUse" x1="56" x2="463" y1="46" y2="465"]
-          stop[offset="0" stop-color="#8038ed"]
-          stop[offset="1" stop-color="#3a0092"]
-        path[d="m0 0h512v512h-512z" fill="#fff"]
-        rect[fill="url(#a)" height="512" rx="110" width="512"]
-        g[stroke="#fff"]
-          circle[cx="190" cy="302" r="79.5" stroke-opacity=".9" stroke-width="25"]
-          circle[cx="254" cy="377" r="34" stroke-opacity=".8" stroke-width="10"]
-          circle[cx="282" cy="227" r="106" stroke-width="50"]
-    h1.mb-4.text-2xl.font-semibold.text-gray-800.text-center.mt-3
-      span.sr-only
-        | DogBook 
+.py-10.grid.grid-cols-3.gap-6.m-6
+  - @booking_types.each do |booking_type|
+    = link_to new_user_booking_path(booking_link: "", booking_type: booking_type.name) do
+      = render 'booking_type', booking_type: booking_type

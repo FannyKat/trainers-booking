@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
+    @users = User.all
+    @booking_types = BookingType.all
   end
 
   def dashboard
